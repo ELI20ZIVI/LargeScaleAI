@@ -23,17 +23,17 @@ We use GitHub Projects to track all tasks, including API exploration tasks. Chec
 ---
 
 ## 🔍 API Exploration
-All the details can be found into the [API Exploration](https://github.com/ELI20ZIVI/LargeScaleAI/blob/main/ApiExploration.md) file
+All the details can be found into the [API Exploration](https://docs.google.com/document/d/1faQ3JmGFAZSQC0qg21d-wZG7QcItbEJFvgcQuDj7weE/edit?usp=sharing) file
 
 ---
 
 ## 🧐 Details
-Other details can be found into the [Details](https://github.com/ELI20ZIVI/LargeScaleAI/blob/main/Details.md) file
+Other details can be found into the [Details]([https://github.com/ELI20ZIVI/LargeScaleAI/blob/main/Details.md](https://docs.google.com/document/d/12HqhXcp-jp5MfkvI6AWPRuK7epVN055NAt1-3iH4OjI/edit?usp=sharing)) file
 
 ---
 
 ## ✅ Tasks
-A list of possible tasks to proceed with the project can be found into the [Tasks](https://github.com/ELI20ZIVI/LargeScaleAI/blob/main/Tasks.md) file
+A list of possible tasks to proceed with the project can be found into the [Tasks](https://docs.google.com/document/d/1pwnZdDuRnzD759D_uojXE_4AusSUYnkQLj4nmz7ALJU/edit?usp=sharing) file
 
 ## 🤝 Contributions
 - Cerullo Davide
