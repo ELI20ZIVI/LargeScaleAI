@@ -23,7 +23,7 @@ We use GitHub Projects to track all tasks, including API exploration tasks. Chec
 ---
 
 ## 🔍 API Exploration
-All the details can be found into the [ApiExploration.md] file
+All the details can be found into the [ApiExploration.md](https://github.com/ELI20ZIVI/LargeScaleAI/blob/main/ApiExploration.md) file
 
 ---
 
