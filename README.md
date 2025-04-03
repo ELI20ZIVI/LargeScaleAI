@@ -32,6 +32,9 @@ Other details can be found into the [Details](https://github.com/ELI20ZIVI/Large
 
 ---
 
+## ✅ Tasks
+A list of possible tasks to proceed with the project can be found into the [Tasks](https://github.com/ELI20ZIVI/LargeScaleAI/blob/main/Tasks.md) file
+
 ## 🤝 Contributions
 - Cerullo Davide
 - Fasol Lorenzo
