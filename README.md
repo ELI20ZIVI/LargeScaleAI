@@ -27,6 +27,11 @@ All the details can be found into the [API Exploration](https://github.com/ELI20
 
 ---
 
+## 🧐 Details
+Other details can be found into the [Details](https://github.com/ELI20ZIVI/LargeScaleAI/blob/main/Details.md) file
+
+---
+
 ## 🤝 Contributions
 - Cerullo Davide
 - Fasol Lorenzo
