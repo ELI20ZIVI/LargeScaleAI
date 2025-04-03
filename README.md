@@ -28,7 +28,7 @@ All the details can be found into the [API Exploration](https://docs.google.com/
 ---
 
 ## 🧐 Details
-Other details can be found into the [Details]([https://github.com/ELI20ZIVI/LargeScaleAI/blob/main/Details.md](https://docs.google.com/document/d/12HqhXcp-jp5MfkvI6AWPRuK7epVN055NAt1-3iH4OjI/edit?usp=sharing)) file
+Other details can be found into the [Details](https://docs.google.com/document/d/12HqhXcp-jp5MfkvI6AWPRuK7epVN055NAt1-3iH4OjI/edit?usp=sharing) file
 
 ---
 
