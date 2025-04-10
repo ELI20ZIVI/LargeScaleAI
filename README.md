@@ -32,8 +32,8 @@ Other details can be found into the [Requirements](https://docs.google.com/docum
 
 ---
 
-## ✅ Tasks
-A list of possible tasks to proceed with the project can be found into the [Tasks](https://docs.google.com/document/d/1pwnZdDuRnzD759D_uojXE_4AusSUYnkQLj4nmz7ALJU/edit?usp=sharing) file
+## ✅ Architecture
+A possible architecture to proceed with the project can be found into the [Architecture](https://docs.google.com/document/d/1pwnZdDuRnzD759D_uojXE_4AusSUYnkQLj4nmz7ALJU/edit?usp=sharing) file
 
 ## 🤝 Contributions
 - Cerullo Davide
