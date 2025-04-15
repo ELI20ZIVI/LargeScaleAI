@@ -1,0 +1,96 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="card bg-dark">
+            <div class="card-body">
+                <h1 class="card-title text-center mb-4">
+                    <i class="fas fa-brain text-info me-2"></i>
+                    Smart Notes Processor
+                </h1>
+                
+                <p class="lead text-center mb-4">
+                    Upload your document and let AI extract, organize, and enhance topics with adjustable granularity.
+                </p>
+                
+                <div class="row mb-4">
+                    <div class="col-md-4 text-center">
+                        <div class="d-inline-block bg-dark p-3 rounded-circle mb-2">
+                            <i class="fas fa-file-upload text-info fa-2x"></i>
+                        </div>
+                        <h5>Upload Document</h5>
+                        <p class="text-muted">Upload text, PDFs, and other document formats</p>
+                    </div>
+                    <div class="col-md-4 text-center">
+                        <div class="d-inline-block bg-dark p-3 rounded-circle mb-2">
+                            <i class="fas fa-brain text-info fa-2x"></i>
+                        </div>
+                        <h5>AI Processing</h5>
+                        <p class="text-muted">Extract topics and enhance notes with Gemini LLM</p>
+                    </div>
+                    <div class="col-md-4 text-center">
+                        <div class="d-inline-block bg-dark p-3 rounded-circle mb-2">
+                            <i class="fas fa-file-alt text-info fa-2x"></i>
+                        </div>
+                        <h5>Generate Notes</h5>
+                        <p class="text-muted">Create organized notes in your preferred format</p>
+                    </div>
+                </div>
+                
+                <hr class="my-4">
+                
+                <form id="upload-form" action="{{ url_for('upload_file') }}" method="POST" enctype="multipart/form-data" class="mb-3">
+                    <div class="upload-area mb-3" id="upload-area">
+                        <i class="fas fa-cloud-upload-alt text-info fa-3x mb-3"></i>
+                        <h5>Upload Document</h5>
+                        <p class="text-muted">Click or drag and drop your file here</p>
+                        <p class="text-muted small">Supported formats: TXT, PDF, DOCX, MD</p>
+                        <p id="file-info" class="text-info d-none"></p>
+                        <input type="file" id="file-input" name="file" class="file-input" accept=".txt,.pdf,.docx,.md">
+                    </div>
+                    
+                    <div class="d-grid">
+                        <button id="upload-btn" type="submit" class="btn btn-info" disabled>
+                            <i class="fas fa-upload me-2"></i> Process Document
+                        </button>
+                    </div>
+                </form>
+                
+                {% if documents and documents|length > 0 %}
+                <div class="card bg-dark mt-4">
+                    <div class="card-header">
+                        <h5 class="mb-0">
+                            <i class="fas fa-history me-2"></i> Previously Processed Documents
+                        </h5>
+                    </div>
+                    <div class="list-group list-group-flush">
+                        {% for document in documents %}
+                        <a href="{{ url_for('load_document', document_id=document.id) }}" class="list-group-item list-group-item-action">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h6 class="mb-1">{{ document.title }}</h6>
+                                <small>{{ document.created_at.strftime('%Y-%m-%d %H:%M') }}</small>
+                            </div>
+                            <small class="text-muted">{{ document.file_type.upper() }} | {{ document.topics|length }} topics</small>
+                        </a>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+                
+                <div class="alert alert-dark mt-4" role="alert">
+                    <h6><i class="fas fa-info-circle me-2"></i> How it works:</h6>
+                    <ol class="mb-0">
+                        <li>Upload your document (text, PDF, etc.)</li>
+                        <li>AI extracts topics with adjustable granularity</li>
+                        <li>Each topic gets its own note with enhanced information</li>
+                        <li>Images in documents are analyzed with Google Gemini Vision</li>
+                        <li>Choose your preferred output format (Markdown, LaTeX, HTML)</li>
+                        <li>Download individual notes or all notes as a package</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

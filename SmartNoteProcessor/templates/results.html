@@ -1,0 +1,160 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="row">
+    <!-- Sidebar with Topics -->
+    <div class="col-md-4 mb-4">
+        <div class="card bg-dark h-100">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">
+                    <i class="fas fa-list-ul me-2"></i> Topics
+                </h5>
+                
+                <!-- Download All Button -->
+                {% if notes %}
+                <a href="{{ url_for('download_all') }}" class="btn btn-sm btn-outline-info">
+                    <i class="fas fa-download me-1"></i> Download All
+                </a>
+                {% endif %}
+            </div>
+            
+            <div class="card-body">
+                <!-- Granularity Control -->
+                <form id="granularity-form" action="{{ url_for('update_granularity') }}" method="POST" class="mb-4">
+                    <label for="granularity-slider" class="form-label d-flex justify-content-between">
+                        <span>Topic Granularity:</span>
+                        <span class="badge bg-info" id="granularity-value">{{ granularity|default(50) }}</span>
+                    </label>
+                    <input type="range" class="form-range granularity-slider" id="granularity-slider" name="granularity" min="0" max="100" value="{{ granularity|default(50) }}">
+                    <div class="row text-muted small mb-2">
+                        <div class="col-4 text-start">Macro-Topics</div>
+                        <div class="col-4 text-center">Balanced</div>
+                        <div class="col-4 text-end">Detailed</div>
+                    </div>
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-sm btn-secondary">
+                            <i class="fas fa-sync-alt me-1"></i> Update Topics
+                        </button>
+                    </div>
+                </form>
+                
+                <!-- Topic List -->
+                {% if topics %}
+                <div class="list-group">
+                    {% for topic_id, topic in topics.items() %}
+                    <a href="{{ url_for('view_topic', topic_id=topic_id) }}" 
+                       class="list-group-item list-group-item-action {% if viewing_topic and viewing_topic.name == topic.name %}active{% endif %}">
+                        {{ topic.name }}
+                    </a>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <div class="alert alert-secondary">
+                    <i class="fas fa-info-circle me-2"></i> No topics extracted yet.
+                </div>
+                {% endif %}
+            </div>
+            
+            <!-- Note Generation Controls -->
+            {% if topics %}
+            <div class="card-footer">
+                <form id="generate-form" action="{{ url_for('generate_notes') }}" method="POST">
+                    <div class="mb-3">
+                        <label class="form-label">Output Format:</label>
+                        <div class="format-selector nav nav-pills">
+                            <a class="nav-link active" href="#" data-format="markdown">
+                                <i class="fab fa-markdown me-1"></i> Markdown
+                            </a>
+                            <a class="nav-link" href="#" data-format="latex">
+                                <i class="fas fa-square-root-alt me-1"></i> LaTeX
+                            </a>
+                            <a class="nav-link" href="#" data-format="html">
+                                <i class="fab fa-html5 me-1"></i> HTML
+                            </a>
+                        </div>
+                        <input type="hidden" id="format-input" name="format" value="markdown">
+                    </div>
+                    
+                    <div class="mb-3">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="process-images" name="process_images" value="true" checked>
+                            <label class="form-check-label" for="process-images">Analyze images with Gemini Vision</label>
+                        </div>
+                        <small class="text-muted">Extract and analyze information from images related to each topic.</small>
+                    </div>
+                    
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-info">
+                            <i class="fas fa-magic me-2"></i> Generate Notes
+                        </button>
+                    </div>
+                </form>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    
+    <!-- Main Content Area -->
+    <div class="col-md-8">
+        {% if viewing_topic %}
+        <!-- Topic View -->
+        <div class="card bg-dark mb-4">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h4 class="mb-0">{{ viewing_topic.name }}</h4>
+                <div>
+                    <button onclick="copyToClipboard('note-content')" class="btn btn-sm btn-outline-secondary me-2">
+                        <i class="fas fa-copy me-1"></i> Copy
+                    </button>
+                    <a href="{{ url_for('download_topic', topic_id=request.view_args.topic_id) }}" class="btn btn-sm btn-outline-info">
+                        <i class="fas fa-download me-1"></i> Download
+                    </a>
+                </div>
+            </div>
+            
+            <div class="card-body">
+                <div id="copy-tooltip" class="alert alert-success d-none mb-3">
+                    Content copied to clipboard!
+                </div>
+                
+                <!-- Note Content -->
+                <div class="note-content markdown-preview" id="note-content">
+                    {% if viewing_topic.format == 'html' %}
+                        {{ viewing_topic.content|safe }}
+                    {% else %}
+                        <pre>{{ viewing_topic.content }}</pre>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% elif notes %}
+        <!-- Notes Generated But None Selected -->
+        <div class="card bg-dark">
+            <div class="card-body text-center py-5">
+                <i class="fas fa-file-alt text-info fa-4x mb-3"></i>
+                <h4>Notes Generated Successfully!</h4>
+                <p class="text-muted">Select a topic from the list to view its content.</p>
+            </div>
+        </div>
+        {% elif topics %}
+        <!-- Topics Extracted But Notes Not Generated -->
+        <div class="card bg-dark">
+            <div class="card-body text-center py-5">
+                <i class="fas fa-brain text-info fa-4x mb-3"></i>
+                <h4>Topics Extracted Successfully!</h4>
+                <p class="text-muted mb-4">{{ topics|length }} topics have been identified. Click "Generate Notes" to create detailed content for each topic.</p>
+                <p class="text-muted">Adjust the granularity slider to control the level of detail in topic extraction.</p>
+            </div>
+        </div>
+        {% else %}
+        <!-- No Processing Done Yet -->
+        <div class="card bg-dark">
+            <div class="card-body text-center py-5">
+                <i class="fas fa-upload text-info fa-4x mb-3"></i>
+                <h4>Ready to Process Your Document</h4>
+                <p class="text-muted">Use the form on the left to upload a document and begin the topic extraction process.</p>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

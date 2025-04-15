@@ -1,0 +1,120 @@
+/* Custom styles for Smart Notes Processor */
+
+/* Add more spacing between sections */
+.section {
+    margin-bottom: 2rem;
+}
+
+/* Topic card styles */
+.topic-card {
+    transition: transform 0.2s, box-shadow 0.2s;
+    height: 100%;
+}
+
+.topic-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Custom slider styling */
+.granularity-slider {
+    width: 100%;
+}
+
+/* Note content container */
+.note-content {
+    max-height: 500px;
+    overflow-y: auto;
+    padding: 1rem;
+    border-radius: 0.25rem;
+    background-color: var(--bs-dark);
+}
+
+/* File upload area */
+.upload-area {
+    border: 2px dashed var(--bs-secondary);
+    border-radius: 5px;
+    padding: 2rem;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.3s;
+}
+
+.upload-area:hover {
+    border-color: var(--bs-info);
+}
+
+/* Hide the default file input */
+.file-input {
+    display: none;
+}
+
+/* Format selector pills */
+.format-selector .nav-link {
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Responsive font sizes */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.8rem;
+    }
+    h2 {
+        font-size: 1.5rem;
+    }
+}
+
+/* Add some animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-in;
+}
+
+/* Markdown preview styling */
+.markdown-preview pre {
+    background-color: var(--bs-dark);
+    padding: 1rem;
+    border-radius: 0.25rem;
+    overflow-x: auto;
+}
+
+.markdown-preview code {
+    color: var(--bs-info);
+}
+
+.markdown-preview table {
+    width: 100%;
+    margin-bottom: 1rem;
+    border-collapse: collapse;
+}
+
+.markdown-preview th,
+.markdown-preview td {
+    padding: 0.5rem;
+    border: 1px solid var(--bs-secondary);
+}
+
+/* Loading spinner */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    display: none;
+}
+
+.loading-spinner {
+    width: 3rem;
+    height: 3rem;
+}
