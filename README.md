@@ -1,5 +1,7 @@
 # 📚 AI-Powered Study Notes Generator
 
+Live demo of the generator is available [here](https://large-scale-ai.onrender.com)!!!
+
 ## 📝 Overview
 This project is designed to help students and professionals studying complex topics by automatically generating structured, easy-to-navigate study notes. The system processes study materials, including images, videos, and text documents (PDF, Word), and creates well-organized Markdown files. These files are:
 
